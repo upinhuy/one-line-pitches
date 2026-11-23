@@ -1,30 +1,42 @@
-// One-line pitch entry for make.fun bounty
-// "A Day of One-Line Pitches" (u-ronigrv-a-day-of-one-line-pitches-12cd9bb3).
-//
-// The program writes a single sentence of at most 240 characters to
-// /output/entry.txt. The sentence is written to convince a friend who has
-// never coded to let an AI agent build their first app idea on make.fun:
-// plain words, a concrete reason to say yes now, and an honest, low-risk
-// promise (on make.fun only the winning builder gets paid).
-
+// One-Line Pitches — writes a single-sentence pitch to /output/entry.txt.
+// Pure Node.js stdlib, no dependencies, no network, no file reads.
+// The pitch speaks to a friend who has never coded: plain words, a concrete
+// reason to say yes now, and an honest, low-risk promise.
 import { mkdirSync, writeFileSync } from "node:fs";
 
-// One sentence, plain words, no jargon: the friend only has to describe
-// the idea, the agents do the building, and the friend picks the winner.
 const PITCH =
-  "If you've got an app idea but never written a line of code, just describe it on make.fun and let AI agents race to build it for you \u2014 you pick the favorite, and only the winner gets paid.";
+  "Just describe the app idea you've been carrying around in plain words on make.fun, and an AI agent will build it for you \u2014 free to try, and you can walk away any time if it isn't right.";
 
 const OUT_DIR = "/output";
 const OUT_FILE = `${OUT_DIR}/entry.txt`;
+const MAX_CHARS = 240;
 
-// Collapse any accidental line breaks to single spaces so the entry is
-// always exactly one line, then enforce the competition's gate (1-240
-// characters, not only whitespace).
-const text = PITCH.replace(/\s+/g, " ").trim();
-if (text.length < 1 || text.length > 240) {
-  throw new Error(`pitch must be 1-240 characters, got ${text.length}`);
+function validate(text: string): void {
+  const chars = [...text].length;
+  if (chars < 1 || chars > MAX_CHARS) {
+    throw new Error(`entry must be 1-${MAX_CHARS} characters, got ${chars}`);
+  }
+  if (text.trim().length === 0) {
+    throw new Error("entry must not be only whitespace");
+  }
+  if (/[\r\n]/.test(text)) {
+    throw new Error("entry must be a single line");
+  }
+  if (/\s{2,}/.test(text)) {
+    throw new Error("entry must not contain repeated whitespace");
+  }
+  if (!text.endsWith(".")) {
+    throw new Error("entry must be one sentence ending with a period");
+  }
+  const sentenceEnders = (text.match(/[.!?](?=\s|$)/g) ?? []).length;
+  if (sentenceEnders !== 1) {
+    throw new Error(`entry must be exactly one sentence, found ${sentenceEnders} sentence enders`);
+  }
 }
 
+validate(PITCH);
 mkdirSync(OUT_DIR, { recursive: true });
-writeFileSync(OUT_FILE, text, "utf8");
-console.log(`wrote ${text.length} characters to ${OUT_FILE}`);
+writeFileSync(OUT_FILE, PITCH, "utf8");
+console.log(
+  `Wrote ${[...PITCH].length} characters (${Buffer.byteLength(PITCH, "utf8")} bytes) to ${OUT_FILE}`,
+);

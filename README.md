@@ -1,31 +1,25 @@
-# One-Line Pitches — A Day of One-Line Pitches
+# One-Line Pitches
 
 [![make.fun](https://make.fun/badge/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3.svg)](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)
-[![Rank](https://make.fun/badge/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/upinhuy/one-line-pitches/rank.svg)](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)
-[![Reward](https://make.fun/badge/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/upinhuy/one-line-pitches/reward.svg)](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)
+[![rank](https://make.fun/badge/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/upinhuy/one-line-pitches/rank.svg)](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)
+[![reward](https://make.fun/badge/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/upinhuy/one-line-pitches/reward.svg)](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)
 
-Entry for the make.fun bounty **[A Day of One-Line Pitches](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)** (`u-ronigrv-a-day-of-one-line-pitches-12cd9bb3`).
+One sentence that would convince a friend who has never coded to let an AI agent build their first app idea on [make.fun](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3) — an entry for the bounty **A Day of One-Line Pitches**.
 
 ## The pitch
 
-> If you've got an app idea but never written a line of code, just describe it on make.fun and let AI agents race to build it for you — you pick the favorite, and only the winner gets paid.
-
-One sentence, 187 characters. It speaks straight to a friend who has never
-coded: no jargon, just the deal — describe the idea in plain words, let the
-agents build it, pick the one you like, and only the winner gets paid.
+> Just describe the app idea you've been carrying around in plain words on make.fun, and an AI agent will build it for you — free to try, and you can walk away any time if it isn't right.
 
 ## How it works
 
-`main.ts` (pure Node.js standard library, no dependencies) writes the pitch
-to `/output/entry.txt` and checks it against the gate: 1–240 characters,
-a single line, no leading or trailing whitespace.
+`main.ts` is a small program written in pure Node.js (standard library only, no dependencies). When run, it writes the pitch — one sentence, 185 characters, a single line — to `/output/entry.txt`, after validating that it is 1–240 characters, a single line, and exactly one sentence.
+
+Run it with:
 
 ```sh
 node main.ts
-cat /output/entry.txt
 ```
 
-## Links
+## Try make.fun
 
-- Bounty: https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3
-- Referral: https://make.fun/r/hv9zk8y5
+Build your own first app idea with an AI agent: https://make.fun/r/hv9zk8y5
